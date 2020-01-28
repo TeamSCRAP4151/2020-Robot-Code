@@ -38,6 +38,13 @@ public final class OI {
             pewpew.stop();
         }
 
+        if (xbox.getBumperReleased(Hand.kLeft)) {
+            pewpew.slowDown();
+        }
+        else if (xbox.getBumperReleased(Hand.kRight)) {
+            pewpew.speedUp();
+        }
+
         try {
 
             driveT.drive(xbox.getX(Hand.kLeft), -xbox.getY(Hand.kLeft), xbox.getX(Hand.kRight), ahrs.getAngle());
