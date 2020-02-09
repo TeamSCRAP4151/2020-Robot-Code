@@ -1,14 +1,15 @@
 package frc.robot;
 
-import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
+
+import com.ctre.phoenix.motorcontrol.can.*;
 
 public final class Drivetrain {
 
-    Spark frontLeftWheel = new Spark(0);
-    Spark backLeftWheel = new Spark(1);
-    Spark frontRightWheel = new Spark(2);
-    Spark backRightWheel = new Spark(3);
+    WPI_TalonFX frontLeftWheel = new WPI_TalonFX(1);
+    WPI_TalonFX backLeftWheel = new WPI_TalonFX(2);
+    WPI_TalonFX frontRightWheel = new WPI_TalonFX(3);
+    WPI_TalonFX backRightWheel = new WPI_TalonFX(4);
 
     MecanumDrive driveT = new MecanumDrive(frontLeftWheel, backLeftWheel, frontRightWheel, backRightWheel);
 
