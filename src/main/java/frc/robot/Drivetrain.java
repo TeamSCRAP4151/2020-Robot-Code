@@ -6,10 +6,10 @@ import com.ctre.phoenix.motorcontrol.can.*;
 
 public final class Drivetrain {
 
-    WPI_TalonFX frontLeftWheel = new WPI_TalonFX(2); //LEFT SIDE NEEDS TO BE INVERTED BY IDs
-    WPI_TalonFX backLeftWheel = new WPI_TalonFX(1); 
-    WPI_TalonFX frontRightWheel = new WPI_TalonFX(3); 
-    WPI_TalonFX backRightWheel = new WPI_TalonFX(4); 
+    WPI_TalonFX frontLeftWheel = new WPI_TalonFX(RobotMap.FrontLeftFalcon); 
+    WPI_TalonFX backLeftWheel = new WPI_TalonFX(RobotMap.BackLeftFalcon); 
+    WPI_TalonFX frontRightWheel = new WPI_TalonFX(RobotMap.FrontRightFalcon); 
+    WPI_TalonFX backRightWheel = new WPI_TalonFX(RobotMap.BackRightFalcon); 
 
     MecanumDrive driveT = new MecanumDrive(frontLeftWheel, backLeftWheel, frontRightWheel, backRightWheel);
 

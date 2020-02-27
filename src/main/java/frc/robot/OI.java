@@ -12,10 +12,10 @@ import edu.wpi.first.wpilibj.XboxController;
 public class OI {
 
     Drivetrain driveT = new Drivetrain();
-    XboxController xbox = new XboxController(0);
+    XboxController xbox = new XboxController(RobotMap.XboxControllerPort);
     Shooter shooter = new Shooter();
     AHRS ahrs;
-    Limelight lime = new Limelight();
+    Limelight limelight = new Limelight();
 
     public OI() {
 
@@ -42,7 +42,7 @@ public class OI {
 
         if (xbox.getAButton()) {
 
-            lime.align();
+            limelight.align();
 
         } else if(xbox.getY(Hand.kLeft) > .2 || xbox.getY(Hand.kLeft) < -.2) {
 
