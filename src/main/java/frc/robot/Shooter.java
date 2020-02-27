@@ -6,8 +6,8 @@ import edu.wpi.first.wpilibj.PWMVictorSPX;
 //Import Stuff
 
 public class Shooter {
-    PWMVictorSPX vex1 = new PWMVictorSPX(4);
-    PWMVictorSPX vex2 = new PWMVictorSPX(5);
+    PWMVictorSPX vex1 = new PWMVictorSPX(RobotMap.LeftVictor);
+    PWMVictorSPX vex2 = new PWMVictorSPX(RobotMap.RightVictor);
     double shootspeed = 0.4;
 
 

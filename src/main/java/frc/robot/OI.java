@@ -16,6 +16,7 @@ public class OI {
     Shooter shooter = new Shooter();
     AHRS ahrs;
     Limelight limelight = new Limelight();
+    ColorWheel spinner = new ColorWheel();
 
     public OI() {
 
@@ -32,6 +33,10 @@ public class OI {
     public void driverInput() {
 
         driveT.brake(xbox.getTriggerAxis(Hand.kRight));
+
+        if (xbox.getTriggerAxis(Hand.kRight)>0.5) {
+            spinner.spin();
+        }
 
         if (xbox.getXButton()) {
             shooter.shoot();
