@@ -14,6 +14,8 @@ public class OI {
     Drivetrain driveT = new Drivetrain();
     XboxController xbox = new XboxController(RobotMap.XboxControllerPort);
     Shooter shooter = new Shooter();
+    Climber climber = new Climber();
+    Indexer indexer = new Indexer();
     AHRS ahrs;
     Limelight limelight = new Limelight();
     ColorWheel spinner = new ColorWheel();
@@ -34,11 +36,17 @@ public class OI {
 
         driveT.brake(xbox.getTriggerAxis(Hand.kRight));
 
-        if (xbox.getTriggerAxis(Hand.kRight)>0.5) {
+        spinner.getColor();
+
+        if (xbox.getXButton()) {
             spinner.spin();
         }
 
-        if (xbox.getXButton()) {
+        if(xbox.getTriggerAxis(Hand.kLeft) > .25) {
+            indexer.index(xbox.getTriggerAxis(Hand.kLeft));
+        }
+
+        if (xbox.getBumper(Hand.kRight) || xbox.getBumper(Hand.kLeft)) {
             shooter.shoot();
         }
         else {
@@ -49,6 +57,10 @@ public class OI {
 
             limelight.align();
 
+        } else if(xbox.getX(Hand.kLeft) >.2 || xbox.getX(Hand.kLeft) < -.2) {
+        
+            driveT.drive(0,0, xbox.getX(Hand.kRight));
+        
         } else if(xbox.getY(Hand.kLeft) > .2 || xbox.getY(Hand.kLeft) < -.2) {
 
             //try {
@@ -72,9 +84,19 @@ public class OI {
             //}
         }
 
-        
-        
+        if(xbox.getBButtonPressed()) {
 
+            driveT.setHalfSpeed();
+
+        }
+        
+        if(xbox.getYButtonPressed()) {
+
+            driveT.setFullSpeed();
+
+        }
+
+        //if statement for climber (replaced climber control with indexer)
         
 
 

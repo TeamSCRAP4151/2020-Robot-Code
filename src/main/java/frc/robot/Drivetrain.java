@@ -13,9 +13,12 @@ public final class Drivetrain {
 
     MecanumDrive driveT = new MecanumDrive(frontLeftWheel, backLeftWheel, frontRightWheel, backRightWheel);
 
+    boolean isFullSpeed = true;
+
     public void drive(double strafeAxis, double forwardAxis, double rotateAxis) {
 
         driveT.driveCartesian(strafeAxis, forwardAxis, rotateAxis);
+        frontLeftWheel.getSelectedSensorPosition();
 
     }
 
@@ -27,7 +30,20 @@ public final class Drivetrain {
 
     public void brake(double breakAxis) {
 
-        driveT.setMaxOutput(1 - breakAxis);
+        if(isFullSpeed == true) {
+            driveT.setMaxOutput(1 - breakAxis);
+        } else {
+            driveT.setMaxOutput(.5 - breakAxis/2);
+        }
+        
+    }
+
+    public void setFullSpeed() {
+        isFullSpeed = true;
+    }
+
+    public void setHalfSpeed() {
+        isFullSpeed = false;
     }
 
 	
