@@ -1,24 +1,28 @@
 package frc.robot;
 
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.PWMVictorSPX;
-
-//Import Stuff
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Shooter {
-    PWMVictorSPX vex1 = new PWMVictorSPX(RobotMap.LeftVictor);
-    PWMVictorSPX vex2 = new PWMVictorSPX(RobotMap.RightVictor);
+    VictorSPX leftVictor = new VictorSPX(RobotMap.LeftVictor);
+    VictorSPX rightVictor = new VictorSPX(RobotMap.RightVictor);
+    
     double shootspeed = 0.4;
 
-
     public void shoot() {
-    
-        vex1.set(shootspeed);
-        vex2.set(-shootspeed);
+        rightVictor.setInverted(false);
+
+        leftVictor.set(ControlMode.PercentOutput, shootspeed);
+        rightVictor.set(ControlMode.PercentOutput, shootspeed);
+       
+        SmartDashboard.putBoolean("Shooter Status", true);
     }
     public void stop() {
-        vex1.set(0.0);
-        vex2.set(0.0);
+        leftVictor.set(ControlMode.PercentOutput, 0.0);
+        rightVictor.set(ControlMode.PercentOutput, 0.0);
+        
+        SmartDashboard.putBoolean("Shooter Status", false);
     }
     
         

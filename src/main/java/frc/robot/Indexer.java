@@ -1,13 +1,14 @@
 package frc.robot;
 
-import edu.wpi.first.wpilibj.PWMVictorSPX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.ctre.phoenix.motorcontrol.ControlMode;;
 
 public class Indexer {
 
-    PWMVictorSPX indexer = new PWMVictorSPX(RobotMap.IndexVictor);
+    VictorSPX indexerMotor = new VictorSPX(RobotMap.IndexVictor);
 
     public void index(double speed) {
 
-        indexer.set(speed);
+        indexerMotor.set(ControlMode.PercentOutput, speed);
     }
 }

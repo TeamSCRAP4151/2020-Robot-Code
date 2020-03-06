@@ -28,12 +28,12 @@ public final class Drivetrain {
 
     }
 
-    public void brake(double breakAxis) {
+    public void brake(double brakeAxis) {
 
         if(isFullSpeed == true) {
-            driveT.setMaxOutput(1 - breakAxis);
+            driveT.setMaxOutput(1 - brakeAxis);
         } else {
-            driveT.setMaxOutput(.5 - breakAxis/2);
+            driveT.setMaxOutput(.5 - brakeAxis/2);
         }
         
     }

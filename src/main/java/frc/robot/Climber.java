@@ -1,13 +1,13 @@
 package frc.robot;
 
-import edu.wpi.first.wpilibj.PWMVictorSPX;
-
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.ctre.phoenix.motorcontrol.ControlMode;
 public class Climber {
 
-    PWMVictorSPX climbMotor = new PWMVictorSPX(RobotMap.ClimbVictor);
+    VictorSPX climbMotor = new VictorSPX(RobotMap.ClimbVictor);
 
     public void climb() {
 
-        climbMotor.set(1);
+        climbMotor.set(ControlMode.PercentOutput, 1);
     }
 }
