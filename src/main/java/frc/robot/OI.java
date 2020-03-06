@@ -20,24 +20,19 @@ public class OI {
     Limelight limelight = new Limelight();
     ColorWheel spinner = new ColorWheel();
 
-    /* public OI() { //what is this?
-
-        try {
-
-            ahrs = new AHRS(SPI.Port.kMXP);
-
-        } catch (RuntimeException e) {
-
-            DriverStation.reportError("Error instantiating with drive system:  " + e.getMessage(), true);
-        }
-    } */
 
     public void driverInput() {
 
         //Control Panel Manipulation
         spinner.getColor();
+
         if (xbox.getXButton()) {
+
             spinner.spin();
+
+        } else {
+
+            spinner.stop();
         }
 
         //Speed Suggestion
@@ -45,14 +40,21 @@ public class OI {
 
         //Indexer Control
         if (xbox.getTriggerAxis(Hand.kLeft) > .25) {
-            indexer.index(xbox.getTriggerAxis(Hand.kLeft));
+
+            indexer.index(-.1);
+
+        } else {
+
+            indexer.stop();
         }
 
         //Shooter Control
         if (xbox.getBumper(Hand.kRight) || xbox.getBumper(Hand.kLeft)) {
+
             shooter.shoot();
-        }
-        else {
+
+        } else {
+
             shooter.stop();
         }
 
@@ -70,16 +72,8 @@ public class OI {
         
         }
         else if(xbox.getY(Hand.kLeft) > .2 || xbox.getY(Hand.kLeft) < -.2) { //if driving forward, do not allow rotation
-
-            //try {
-
-                driveT.drive(xbox.getX(Hand.kLeft), -xbox.getY(Hand.kLeft), 0); //xbox.getX(Hand.kRight)
-    
-            //} catch (RuntimeException e) {
-    
-               // DriverStation.reportError("Error instantiating with drive system:  " + e.getMessage(), true);
-            //}
-
+                
+            driveT.drive(xbox.getX(Hand.kLeft), -xbox.getY(Hand.kLeft), 0); 
         }
         else { //if not trying to rotate or drive forward, only allow strafe
 
@@ -93,7 +87,7 @@ public class OI {
             //}
         }
 
-        //Speed LIMITS
+        //Speed Suggestions
         if(xbox.getBButtonPressed()) {
 
             driveT.setHalfSpeed();

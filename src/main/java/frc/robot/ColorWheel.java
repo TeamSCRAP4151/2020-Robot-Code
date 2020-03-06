@@ -15,33 +15,70 @@ public class ColorWheel {
     ColorSensorV3 sensor = new ColorSensorV3(i2cPort);
 
     String gameData = DriverStation.getInstance().getGameSpecificMessage();
- 
+
+    double RV = sensor.getRed()*1.1494;
+    double GV = sensor.getGreen()*1.05263;
+    double BV = sensor.getBlue()*1.6393;
+
+    char currentColor;
+    String CC;
+
     public void spin(){
 
         colorWheelSpinner.set(0.3);
     }
 
+    public void stop() {
+
+        colorWheelSpinner.set(0);
+    }
+
     public void getColor(){
 
-        SmartDashboard.putNumber("RedValue", sensor.getRed()*1.1494);
-        SmartDashboard.putNumber("GreenValue", sensor.getGreen()*1.05263);
-        SmartDashboard.putNumber("BlueValue", sensor.getBlue()*1.6393);
+        RV = sensor.getRed()*1.1494;
+        GV = sensor.getGreen()*1.05263;
+        BV = sensor.getBlue()*1.6393;
+
+        SmartDashboard.putNumber("RedValue", RV); 
+        SmartDashboard.putNumber("GreenValue", GV); 
+        SmartDashboard.putNumber("BlueValue", BV);
+
+
+
+        if (BV > GV && GV > RV) {
+            currentColor = 'B';
+        }
+        else if (GV > BV && BV > RV) {
+            currentColor = 'G';
+        }
+        else if (GV > RV && RV > BV) {
+            currentColor = 'Y';
+        }
+        else if (RV > BV && BV > GV) {
+            currentColor = 'R';
+        }
+        else {
+            currentColor = 'F';
+        }
+
+        SmartDashboard.putNumber("Current Color", currentColor);
+
 
         if (gameData.length() > 0) {
             switch (gameData.charAt(0)) {
-                case 'B' :
+                case 'B' : // B > G > R
                     SmartDashboard.putString("Desired Color", "Blue");
                     break;
 
-                case 'G' :
+                case 'G' : // G > B > R
                     SmartDashboard.putString("Desired Color", "Green");
                     break;
 
-                case 'Y' :
+                case 'Y' : // G > R > B (Check)
                     SmartDashboard.putString("Desired Color", "Yellow");
                     break;
 
-                case 'R' :
+                case 'R' : // R > B > G
                     SmartDashboard.putString("Desired Color", "Red");
                     break;
 

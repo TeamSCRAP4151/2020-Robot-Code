@@ -11,4 +11,9 @@ public class Indexer {
 
         indexerMotor.set(ControlMode.PercentOutput, speed);
     }
+
+    public void stop() {
+        
+        indexerMotor.set(ControlMode.PercentOutput, 0);
+    }
 }
