@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends TimedRobot {
   
+  Autonomous autonomous = new Autonomous();
   PowerDistributionPanel power = new PowerDistributionPanel();
   OI oi = new OI();
 
@@ -23,10 +24,6 @@ public class Robot extends TimedRobot {
 
   // factor to convert sensor values to a distance in inches
   private static final double kValueToInches = 0.125;
-
-  
-
-
   
   private static final int kUltrasonicPort = 0;
 
@@ -50,14 +47,14 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
    
-
+    autonomous.test();
   }
 
 
   @Override
   public void autonomousPeriodic() {
     
-    
+    autonomous.auto();
   }
 
   @Override

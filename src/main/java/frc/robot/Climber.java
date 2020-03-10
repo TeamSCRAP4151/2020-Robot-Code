@@ -6,8 +6,8 @@ public class Climber {
 
     VictorSPX climbMotor = new VictorSPX(RobotMap.ClimbVictor);
 
-    public void climb() {
+    public void climb(double speed) {
 
-        climbMotor.set(ControlMode.PercentOutput, 1);
+        climbMotor.set(ControlMode.PercentOutput, speed);
     }
 }

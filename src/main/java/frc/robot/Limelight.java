@@ -40,7 +40,7 @@ public class Limelight {
     double validTarget;
     
     public void align() {
-
+    
         validTarget = tv.getDouble(0);
         xError = -tx.getDouble(0);
         yError = -ty.getDouble(0);
@@ -62,6 +62,9 @@ public class Limelight {
                 //ANGLE EVENTUALLY
             }
             
+
+        } else {
+
 
         }
 
@@ -92,5 +95,14 @@ public class Limelight {
         angleD = ((angleError - anglePrevError)/.02);
 
         return (kP * xP) + (kI * xI) + (kD * xD);
+    }
+
+    public void turnOnLED() {
+
+        table.getEntry("ledMode").setNumber(1);
+    }
+    public void turnOffLED() {
+        
+        table.getEntry("ledMode").setNumber(3);
     }
 }

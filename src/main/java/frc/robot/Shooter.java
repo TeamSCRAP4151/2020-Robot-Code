@@ -14,7 +14,7 @@ public class Shooter {
         rightVictor.setInverted(false);
 
         leftVictor.set(ControlMode.PercentOutput, shootspeed);
-        rightVictor.set(ControlMode.PercentOutput, shootspeed);
+        rightVictor.set(ControlMode.PercentOutput, -shootspeed);
        
         SmartDashboard.putBoolean("Shooter Status", true);
     }
